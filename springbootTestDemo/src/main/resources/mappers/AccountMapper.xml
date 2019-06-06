@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.exam.demo.mapper.AccountMapper" >
+
+   <resultMap id="BaseResultMap" type="com.exam.demo.entity.Account" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="usercode" property="usercode" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from account
+  </select>
+  
+  <select id="getMessById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   select 
+          *
+   from 
+        account  
+       where id = #{id,jdbcType=INTEGER} limit 1
+  </select>
+     
+</mapper>

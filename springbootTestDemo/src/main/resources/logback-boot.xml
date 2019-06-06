@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    
+  <property name="LOG_HOME" value="/usr/local/apache-tomcat-7.0.77/logs" /> 
+  
+	<substitutionProperty name="log.base" value="springbootTestDemo" />
+
+	<jmxConfigurator />
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date [%thread] %-5level %logger{80} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_HOME}/${log.base}.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/${log.base}.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date [%thread] %-5level %logger{80} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<logger name="com.exam.demo">
+		<level value="DEBUG" />
+	</logger>
+	
+	<!--   
+	<logger name="org.springframework">
+		<level value="DEBUG" />
+	</logger>
+	-->
+	<logger name="org.apache.ibatis">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="org.apache.http">
+		<level value="DEBUG" />
+	</logger>
+
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="logfile" />
+	</root>
+</configuration>
